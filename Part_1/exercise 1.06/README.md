@@ -6,6 +6,6 @@ But I created an env variable in src/main/resources/application.properties label
 
 and I added the env variable in the manifests/deployment.yaml
 
-I added the service.yaml file in the manifests to project:v0.4
+I added the service.yaml file in the manifests to project:v0.4 as a NodePort Service
 
 while the target port for the service.yaml in the deployment is the same which we passed as an environment variable for our simple project which is 8811
