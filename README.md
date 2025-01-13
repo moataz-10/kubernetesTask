@@ -1,7 +1,7 @@
-This Repo is to master kubernetes
+This Repo is to master kubernetes and microservices
 
-by completing the DevOps with Kubernetes course 
+by completing the DevOps with Kubernetes course
 
-which is held by Hilsenki University 
+which is held by Helsinki University
 
 through this website: https://devopswithkubernetes.com/
