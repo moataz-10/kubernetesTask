@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: readrwite-dep
+  labels:
+    app: readrwite-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: readrwite-dep
+  template:
+    metadata:
+      name: readrwite-dep
+      labels:
+        app: readrwite-dep
+    spec:
+      volumes: # Define volume
+        - name: shared-image
+          emptyDir: { }
+      containers:
+        - name: write
+          image: mo3mo3/writer-app:v1
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: shared-image
+              mountPath: /shared
+        - name: read
+          image: mo3mo3/reader-app:v1
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: shared-image
+              mountPath: /shared
+
+
+      
