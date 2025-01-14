@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: project-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: project-dep # This is the app as declared in the deployment.
+  ports:
+    - protocol: TCP
+      port: 2345
+      targetPort: 8811 # This is the target port which is passed as an environment variable in the deployment

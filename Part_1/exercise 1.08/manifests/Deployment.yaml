@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: project-dep
+  template:
+    metadata:
+      labels:
+        app: project-dep
+    spec:
+      containers:
+        - name: project-container
+          image: mo3mo3/project:v0.5
+          env:
+            - name: PORT
+              value: "8811" #
