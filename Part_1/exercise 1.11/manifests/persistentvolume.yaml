@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: example-pv
+spec:
+  storageClassName: my-example-pv # This name will be referenced in the PVC
+  capacity:
+    storage: 1Gi # Ensure proper unit (Gi, Mi, etc.)
+  volumeMode: Filesystem # Declares that the volume will be mounted as a filesystem
+  accessModes:
+    - ReadWriteMany # Multiple pods can read/write simultaneously
+  persistentVolumeReclaimPolicy: Retain # Retain data after release of the PVC
+  local: # Local volume definition
+    path: /tmp/kube # Path on the node where the data resides
+  nodeAffinity: # Defines which node(s) can access this volume
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - k3d-k3s-default-agent-0 # The node where this local path exists

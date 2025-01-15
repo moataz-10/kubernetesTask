@@ -1,14 +1,13 @@
-package com.example.exercise1_07;
+package org.example.logoutput;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.UUID;
 import java.util.Scanner;
-import java.nio.file.Paths;
-
+import java.util.UUID;
 
 
 @RestController
@@ -26,8 +25,12 @@ class RandomStringController {
     public String getStatus() {
         updateTimestamp();
         String requests=null;
-
-        String result = lastTimestamp + ": " + randomString;
+        try(Scanner scanner = new Scanner(Paths.get("shared/file.txt"))){
+            requests = scanner.nextLine();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        String result = lastTimestamp + ": " + randomString+"."+"<br>Ping / Pongs: "+requests;
         return result;
     }
 
