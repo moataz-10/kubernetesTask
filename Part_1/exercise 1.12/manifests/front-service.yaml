@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: img-svc
+spec:
+  selector:
+    app: img-dep
+  ports:
+    - protocol: TCP
+      port: 2345
+      targetPort: 3000
+  type: ClusterIP
+  

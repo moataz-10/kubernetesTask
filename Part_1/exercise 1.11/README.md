@@ -4,6 +4,8 @@ note: the docker images of the app is on DockerHub you just need to apply the ma
 
 and make sure that the proxy maps the 8081 to the open port 80
 
+make sure to create a directory in agent0 "/tmp/kube"
+
 To request the ping-pong --> http://localhost:8081/pingpong
 
 To request the log-output --> http://localhost:8081/
