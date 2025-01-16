@@ -1,4 +1,4 @@
-In the logs_out application I added a function to retrieve data
+In the logs-app application I added a function to retrieve data
 from an endpoint using RestTemplate because Iam using Spring boot
 
 and in the URL request It was "http://pingpong-sve:2222/getCount" 
