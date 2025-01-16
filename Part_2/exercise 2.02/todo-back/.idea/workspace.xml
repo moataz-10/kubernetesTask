@@ -1,47 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b0b3f6d-ffc6-4a19-9c84-9f87b2f4b03d" name="Changes" comment="" />
+    <list default="true" id="1419d296-7d52-4cfc-91a8-0ebb06f334cc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../../Part_1/exercise 1.13/image-front/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Part_1/exercise 1.13/image-front/views/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Dockerfile" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
+  "associatedIndex": 5
 }]]></component>
-  <component name="ProjectId" id="2rhWRTqB0OmRTqfUoQaYyHPY3rY" />
+  <component name="ProjectId" id="2rhWckNCgbQZQ21bs4onBmy67fh" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
+    "Maven.todo-back [clean,install].executor": "Run",
+    "Maven.todo-back [clean,package].executor": "Run",
+    "Maven.todo-back [package].executor": "Run",
+    "Maven.todo-back [spring-boot:run].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.TodoBackApplication.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/mozot/OneDrive/Desktop/kubernetesTasks/Part_2/exercise 2.02/todo-back",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.49770114",
+    "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn package" />
+      <command value="mvn clean install" />
+      <command value="mvn spring-boot:run" />
+      <command value="mvn clean package" />
+    </option>
+  </component>
   <component name="RunManager">
-    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
-      <setting name="path" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="file://$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
+    <configuration name="TodoBackApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="todo-back" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.todoback.TodoBackApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -58,12 +94,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1b0b3f6d-ffc6-4a19-9c84-9f87b2f4b03d" name="Changes" comment="" />
-      <created>1737011778536</created>
+      <changelist id="1419d296-7d52-4cfc-91a8-0ebb06f334cc" name="Changes" comment="" />
+      <created>1737011870408</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1737011778536</updated>
-      <workItem from="1737011779578" duration="91000" />
+      <updated>1737011870408</updated>
+      <workItem from="1737011871431" duration="18302000" />
     </task>
     <servers />
   </component>
