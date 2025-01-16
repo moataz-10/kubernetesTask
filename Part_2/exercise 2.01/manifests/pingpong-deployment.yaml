@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingpong-dep
+  labels:
+    app: pingpong-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pingpong-dep
+  template:
+    metadata:
+      labels:
+        app: pingpong-dep
+    spec:
+      containers:
+        - name: pingpong
+          image: mo3mo3/ping-pong:v3
+          imagePullPolicy: IfNotPresent
+         
+
+
