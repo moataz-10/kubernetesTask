@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ns-project
+  name: back-dep
+  labels:
+    app: back-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: back-dep
+  template:
+    metadata:
+      name: back-dep
+      labels:
+        app: back-dep
+    spec:
+      containers:
+        - name: backend-app
+          image: mo3mo3/backend:v1
+          imagePullPolicy: IfNotPresent
+          
+
+
+      

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ns-project
+  name: front-dep
+  labels:
+    app: front-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front-dep
+  template:
+    metadata:
+      name: front-dep
+      labels:
+        app: front-dep
+    spec:
+      volumes:
+        - name: image-vol
+          persistentVolumeClaim:
+            claimName: front-claim
+
+      containers:
+        - name: frontfront-app
+          image: mo3mo3/todo-front:v1
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /data
+              name: image-vol
+
+
+      
