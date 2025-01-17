@@ -5,3 +5,5 @@ Docker images are pushed into hub you gotta apply the manifests and try it
 make sure you mapped your k3d proxy -> 8081:80 
 
 hit the URL -> "http://localhost:8081/"
+
+*Note: I put the whole project in a namespace called ns-project
