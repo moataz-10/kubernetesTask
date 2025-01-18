@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ns-pong-output
+  name: log-dep
+  labels:
+    app: log-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log-dep
+  template:
+    metadata:
+      name: log-dep
+      labels:
+        app: log-dep
+    spec:
+      volumes:
+        - name: configmap-vol # Ensure this is part of an array
+          configMap:          # Field name should be lowercase
+            name: log-config
+      containers:
+        - name: log-app
+          image: mo3mo3/log-app:v5
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: log-config
+          volumeMounts:
+            - name: configmap-vol
+              mountPath: /shared/information.txt
+              subPath: information.txt
