@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
+  namespace: ns-project
   name: db-stset
 spec:
   serviceName: db-svc
