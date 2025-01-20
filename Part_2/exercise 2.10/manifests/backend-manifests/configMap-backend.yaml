@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: ns-project
+  name: back-config
+data:
+  DB_HOST: db-svc
+  DB_NAME: postgres
+  DB_USERNAME: moataz
+  DB_PASSWORD: "1234"
