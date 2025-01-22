@@ -20,7 +20,11 @@ public class TaskController {
 
     @PostMapping("/todos")
     public void addTodo(@RequestBody String todo) {
-        taskService.addTask(todo);
-        System.out.println("Added todo: " + todo);
+        if(todo.length()<=140){
+            taskService.addTask(todo);
+            System.out.println("Added todo: " + todo);
+        }else{
+            System.out.println("Unallowed String, it must be less than 140");
+        }
     }
 }
