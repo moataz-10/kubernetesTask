@@ -1,0 +1,72 @@
+name: Release application
+
+on:
+  push:
+
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GKE_CLUSTER: dwk-cluster
+  GKE_ZONE: europe-north1-b
+  BRANCH: ${{ github.ref_name }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: '${{ secrets.GKE_SA_KEY }}'
+
+      - name: 'Set up Cloud SDK'
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: 'Use gcloud CLI'
+        run: gcloud info
+
+      - run: gcloud --quiet auth configure-docker
+
+      - name: 'Get GKE credentials'
+        uses: 'google-github-actions/get-gke-credentials@v2'
+        with:
+          cluster_name: '${{ env.GKE_CLUSTER }}'
+          project_id: '${{ env.PROJECT_ID }}'
+          location: '${{ env.GKE_ZONE }}'
+
+      - name: Set up Kustomize
+        uses: imranismail/setup-kustomize@v2
+
+      - name: Install SOPS
+        run: |
+          curl -Lo sops https://github.com/mozilla/sops/releases/download/v3.7.3/sops-v3.7.3.linux
+          chmod +x sops
+          sudo mv sops /usr/local/bin/
+
+      - name: Install Age
+        run: |
+          curl -Lo age.tar.gz https://github.com/FiloSottile/age/releases/download/v1.1.1/age-v1.1.1-linux-amd64.tar.gz
+          tar -xzf age.tar.gz
+          sudo mv age/age /usr/local/bin/
+          sudo mv age/age-keygen /usr/local/bin/
+
+      - name: Decrypt db-secret.enc.yaml
+        env:
+          SOPS_AGE_KEY: ${{ secrets.SOPS_AGE_KEY }}
+        run: |
+          sops --decrypt manifests/db-secrets.enc.yaml > manifests/db-secrets.yaml
+          sops --decrypt manifests/cloud-secret.enc.yaml > manifests/cloud-secret.yaml
+
+
+      - name: Deploy
+        run: |-
+          kustomize build . | kubectl apply -f -
+          kubectl get services -o wide
+
+      - name: Clean up decrypted files
+        run: |
+          rm -f manifests/db-secrets.yaml
+          rm -f manifests/cloud-secret.yaml

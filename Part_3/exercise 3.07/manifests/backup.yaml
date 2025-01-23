@@ -1,0 +1,51 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: postgres-backup
+spec:
+  schedule: "0 0 * * *"  # Daily
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backup
+            image: google/cloud-sdk:slim  # Includes gsutil
+            env:
+              - name: POSTGRES_HOST
+                valueFrom:
+                  secretKeyRef:
+                    name: db-secrets
+                    key: POSTGRES_HOST
+              - name: POSTGRES_USER
+                valueFrom:
+                  secretKeyRef:
+                    name: db-secrets
+                    key: POSTGRES_USER
+              - name: POSTGRES_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: db-secrets
+                    key: POSTGRES_PASSWORD
+              - name: POSTGRES_DB
+                valueFrom:
+                  secretKeyRef:
+                    name: db-secrets
+                    key: POSTGRES_DB
+            volumeMounts:
+              - name: gcs-key
+                mountPath: /var/secrets/gcs
+            command:
+              - /bin/sh
+              - -c
+              - |
+                apt-get update && apt-get install -y postgresql-client && \
+                pg_dump -h $POSTGRES_HOST -U $POSTGRES_USER -d $POSTGRES_DB > backup.sql && \
+                gcloud auth activate-service-account --key-file=/var/secrets/gcs/gcs-key.json && \
+                gsutil cp backup.sql gs://moataz-project-bakcup-bucket/backup-$(date +\%F).sql
+          volumes:
+            - name: gcs-key
+              secret:
+                secretName: gcs-key
+          restartPolicy: OnFailure
