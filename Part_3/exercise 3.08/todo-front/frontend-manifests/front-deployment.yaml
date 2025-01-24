@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-dep
+  labels:
+    app: front-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front-dep
+  template:
+    metadata:
+      name: front-dep
+      labels:
+        app: front-dep
+    spec:
+      volumes:
+        - name: image-vol
+          persistentVolumeClaim:
+            claimName: front-claim
+
+      containers:
+        - name: frontfront-app
+          image: PROJECT/IMAGE
+          volumeMounts:
+            - mountPath: /data
+              name: image-vol
+          resourses:
+            limits:
+              cpu: "150m"
+              memory: "100Mi"
+          
+
+
+      
