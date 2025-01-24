@@ -31,3 +31,7 @@ spec:
             - name: configmap-vol
               mountPath: /shared/information.txt
               subPath: information.txt
+          resources:
+            limits:
+              cpu: "150m"
+              memory: "100Mi"
