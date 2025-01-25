@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: cpu-usage-monitor
+  namespace: ns-project
+spec:
+  metrics:
+  - name: cpu-usage-monitor
+    interval: 5m  # Evaluate every 5 minute
+    successCondition: result < 0.5  
+    failureLimit: 3
+    provider:
+      prometheus:
+        address: http://kube-prometheus-stack-1737-prometheus.prometheus.svc.cluster.local:9090
+        query: |
+          sum(rate(container_cpu_usage_seconds_total{namespace="ns-project"}[5m]))
+
+
+
+
+          

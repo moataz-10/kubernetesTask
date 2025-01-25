@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  namespace: ns-project
+  name: front-dep
+  labels:
+    app: front-dep
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: front-dep
+  strategy:
+    canary:
+      steps:
+      - setWeight: 50
+      - analysis:
+          templates:
+          - templateName: cpu-usage-monitor
+          args:
+          - name: duration
+            value: "10m"  # Wait 10 minutes for analysis
+  template:
+    metadata:
+      labels:
+        app: front-dep
+    spec:
+      volumes:
+        - name: image-vol
+          persistentVolumeClaim:
+            claimName: front-claim
+
+      containers:
+        - name: frontfront-app
+          image: mo3mo3/todo-front:v2
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /data
+              name: image-vol
+          
+            
+      
