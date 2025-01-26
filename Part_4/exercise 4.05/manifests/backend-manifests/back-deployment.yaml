@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ns-project
+  name: back-dep
+  labels:
+    app: back-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: back-dep
+  template:
+    metadata:
+      name: back-dep
+      labels:
+        app: back-dep
+    spec:
+      containers:
+        - name: backend-app
+          image: mo3mo3/backend:v5
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: back-config
+          readinessProbe:
+            initialDelaySeconds: 10 
+            periodSeconds: 5 
+            httpGet:
+               path: /todos
+               port: 8080
+          livenessProbe:
+            initialDelaySeconds: 25 
+            periodSeconds: 5 
+            httpGet:
+               path: /todos
+               port: 8080
+            
+
+
+
+      
