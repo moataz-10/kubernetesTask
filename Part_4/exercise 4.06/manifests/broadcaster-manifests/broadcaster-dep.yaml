@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ns-project
+  name: broadcaster
+  labels:
+    app: broadcaster
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: broadcaster
+  template:
+    metadata:
+      labels:
+        app: broadcaster
+    spec:
+      containers:
+        - name: broadcaster
+          image: broadcaster:v1
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: br-secret
