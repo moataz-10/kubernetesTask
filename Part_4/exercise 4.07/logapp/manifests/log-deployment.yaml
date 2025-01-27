@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ns-pong-output
+  name: log-dep
+  labels:
+    app: log-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log-dep
+  template:
+    metadata:
+      name: log-dep
+      labels:
+        app: log-dep
+    spec:
+      volumes:
+        - name: configmap-vol # Ensure this is part of an array
+          configMap:          # Field name should be lowercase
+            name: log-config
+      containers:
+        - name: log-app
+          image: PROJECT/IMAGE
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: log-config
+          volumeMounts:
+            - name: configmap-vol
+              mountPath: /shared/information.txt
+              subPath: information.txt
+          resources:
+            limits:
+              cpu: "150m"
+              memory: "100Mi"

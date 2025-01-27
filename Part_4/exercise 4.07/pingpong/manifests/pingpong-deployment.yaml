@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ns-pong-output
+  name: pingpong-dep
+  labels:
+    app: pingpong-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pingpong-dep
+  template:
+    metadata:
+      labels:
+        app: pingpong-dep
+    spec:
+      containers:
+        - name: pingpong
+          image: PROJECT/IMAGE
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: "150m"
+              memory: "100Mi"
+         
+
+
