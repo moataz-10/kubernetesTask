@@ -1,0 +1,16 @@
+# CNCF Landscape
+- **Helm**: I used helm to do some installations like prometheus.
+- **Argo**: I used Argo as CD tool compatible with GitOps
+- **Kubernetes**: I used Kubernetes to orchestrate containers in cluster.
+- **Knative**: I used Knative to implement the serverless Apps.
+- **Linkerd**: I used linkerd to implement the service mesh.
+- **etcd**: I've used etcd inderectly through kubernetes (k3d).
+- **Google persistent disk**: I used GPC to storage the DB backup for todo app.
+- **Flannel**: I've used flanned inderectly through k3s.
+- **PostgreSQL**: I used postgres as database for my deployments
+- **NATS**: I used NATS to implement the messaging system for todo app.
+- **Nginx**: I used nginx in different services for deployments.
+- **SOPS**: I used SOPS to encrypt the secrets and configMap resources.
+- **Google Container Registry**: I used GCR to store the images of the containers in cloud deployment
+- **Prometheus**: I used prometheus to monitor my cluster.
+- **Grafana**: I used grafana to visualize the logs monitored by prometheus.
